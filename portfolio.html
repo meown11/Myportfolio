@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player 1 | Creative Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --neon-pink: #ff006e;
+            --neon-cyan: #00f5ff;
+            --neon-yellow: #ffd700;
+            --neon-purple: #bc13fe;
+            --dark-bg: #0a0a0f;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .font-arcade {
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        /* CRT Scanline Effect */
+        .scanlines::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.3;
+        }
+        
+        /* Neon Glow Effects */
+        .neon-text-pink {
+            text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        }
+        
+        .neon-text-cyan {
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+        }
+        
+        .neon-border {
+            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px rgba(0, 245, 255, 0.1);
+        }
+        
+        .neon-border-pink {
+            box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px rgba(255, 0, 110, 0.1);
+        }
+        
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--neon-pink);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--neon-cyan);
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(30px, 9999px, 15px, 0); }
+            20% { clip: rect(80px, 9999px, 70px, 0); }
+            40% { clip: rect(10px, 9999px, 55px, 0); }
+            60% { clip: rect(55px, 9999px, 20px, 0); }
+            80% { clip: rect(40px, 9999px, 80px, 0); }
+            100% { clip: rect(20px, 9999px, 60px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(20px, 9999px, 30px, 0); }
+            40% { clip: rect(90px, 9999px, 85px, 0); }
+            60% { clip: rect(10px, 9999px, 40px, 0); }
+            80% { clip: rect(75px, 9999px, 95px, 0); }
+            100% { clip: rect(35px, 9999px, 15px, 0); }
+        }
+        
+        /* Blinking Cursor */
+        .cursor-blink {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        
+        /* Floating Animation */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Pixel Button */
+        .pixel-btn {
+            position: relative;
+            background: transparent;
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            transition: all 0.3s ease;
+            clip-path: polygon(
+                0 4px, 4px 4px, 4px 0,
+                calc(100% - 4px) 0, calc(100% - 4px) 4px, 100% 4px,
+                100% calc(100% - 4px), calc(100% - 4px) calc(100% - 4px), calc(100% - 4px) 100%,
+                4px 100%, 4px calc(100% - 4px), 0 calc(100% - 4px)
+            );
+        }
+        
+        .pixel-btn:hover {
+            background: var(--neon-cyan);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+        
+        .pixel-btn-pink {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+        }
+        
+        .pixel-btn-pink {
+            border-color: var(--neon-pink);
+            color: var(--neon-pink);
+        }
+        .pixel-btn-pink:hover {
+            background: var(--neon-pink);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-pink);
+        }
+        
+        .pixel-btn-yellow {
+            border-color: var(--neon-yellow);
+            color: var(--neon-yellow);
+        }
+        .pixel-btn-pink:hover {
+            background: var(--neon-yellow);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px var(--neon-yellow);
+        }
+
+        /* Skill Bars */
+        .skill-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .skill-fill {
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+            box-shadow: 0 0 10px var(--neon-cyan);
+            transition: width 1.5s ease-out;
+        }
+        
+        /* Card Hover */
+        .project-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 10px 30px rgba(0, 245, 255, 0.2);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+            border-radius: 0;
+        }
+        
+        /* Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 245, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 245, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body class="scanlines grid-bg">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-40 bg-[#0a0a0f]/90 backdrop-blur-md border-b border-cyan-500/20">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#hero" class="font-arcade text-sm md:text-base text-[#00f5ff] hover:text-[#ff006e] transition-colors">
+                    <i data-lucide="gamepad-2" class="inline w-5 h-5 mr-2"></i>PLAYER 1
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-sm hover:text-[#00f5ff] transition-colors">[ CHARACTER ]</a>
+                    <a href="#skills" class="text-sm hover:text-[#ff006e] transition-colors">[ SKILLS ]</a>
+                    <a href="#projects" class="text-sm hover:text-[#ffd700] transition-colors">[ PROJECTS ]</a>
+                    <a href="#contact" class="text-sm hover:text-[#bc13fe] transition-colors">[ CONTACT ]</a>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-[#00f5ff]">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-3">
+                <a href="#about" class="block text-sm py-2 hover:text-[#00f5ff]">[ START ]</a>
+                <a href="#skills" class="block text-sm py-2 hover:text-[#ff006e]">[ STATS ]</a>
+                <a href="#projects" class="block text-sm py-2 hover:text-[#ffd700]">[ QUESTS ]</a>
+                <a href="#contact" class="block text-sm py-2 hover:text-[#bc13fe]">[ CONTACT ]</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative px-4 pt-20">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-[#00f5ff]/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#ff006e]/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto text-center relative z-10">
+            <div class="mb-6 float">
+                <i data-lucide="cpu" class="w-16 h-16 mx-auto text-[#00f5ff] neon-text-cyan"></i>
+            </div>
+            
+            <p class="text-[#00f5ff] font-arcade text-xs mb-4 tracking-widest">PICK A BUTTON OR SCROLL TO CONTINUE</p>
+            
+            <h1 class="text-4xl md:text-7xl font-bold mb-6">
+                <span id="typewriter" class="glitch neon-text-cyan" data-text=""></span>
+                <span class="cursor-blink text-[#00f5ff]">_</span>
+            </h1>
+          
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#about" class="pixel-btn pixel-btn-yellow px-8 py-4 font-arcade text-xs md:text-sm inline-block">
+                  CHARACTER
+                </a>
+                <a href="#skills" class="pixel-btn pixel-btn-pink px-8 py-4 font-arcade text-xs md:text-sm inline-block">
+                    MY SKILLS
+                </a>
+
+              <a href="#projects" class="pixel-btn px-8 py-4 font-arcade text-xs md:text-sm inline-block">
+                    VIEW QUESTS
+                </a>
+                <a href="#contact" class="pixel-btn pixel-btn-pink px-8 py-4 font-arcade text-xs md:text-sm inline-block">
+                    EMAIL 
+                </a>
+                
+            </div>
+            
+            <div class="mt-12 flex justify-center gap-8 text-sm font-arcade text-gray-500">
+    <div>
+        <span class="block text-5xl text-[#00f5ff] neon-text-cyan counter" data-target="2.5">0</span>
+        <span>YEARS XP</span>
+    </div>
+    <div>
+        <span class="block text-5xl text-[#ffd700] counter" data-target="25">0</span>
+        <span>LEVEL</span>
+    </div>
+</div>
+
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i data-lucide="chevron-down" class="w-6 h-6 text-[#00f5ff]"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 px-4">
+        <div class="container mx-auto max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-[#00f5ff] to-[#ff006e] opacity-20 blur-lg rounded-lg"></div>
+                    <div class="relative bg-[#0f0f14] p-2 rounded-lg border border-cyan-500/30">
+                        <img src="https://scontent.fcrk1-1.fna.fbcdn.net/v/t39.30808-6/471332461_890261346616225_53912651680051241_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=1d70fc&_nc_eui2=AeFFlqCDANs_nfzNVth_kzVjHpVVoMHJcKIelVWgwclworrOGJ-g2yc5zs1Vv2TzEvCh91Qa_VtO_04tVlMXZ3oE&_nc_ohc=aAAZUZmWHE4Q7kNvwH5ULVV&_nc_oc=AdmraTxlhWiQrSaFvcFpE1Rl0S4dA5QPphkvoHTlAfgeEB7L_cJb6gnzb599U-ClpRU&_nc_zt=23&_nc_ht=scontent.fcrk1-1.fna&_nc_gid=DAXJ-5RyhkAGYUKKCEQvgg&oh=00_Afs4NxviDhazov_hVJB1bq6LU-Isqil4e3vDoypklE6p3Q&oe=699C6805" alt="Developer Setup" class="w-full rounded grayscale hover:grayscale-0 transition-all duration-500">
+                        <div class="absolute bottom-4 right-4 bg-[#0a0a0f]/90 px-3 py-1 rounded border border-[#00f5ff] text-xs font-arcade text-[#00f5ff]">
+                            PLAYER 1 READY
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <p class="text-[#00f5ff] font-arcade text-xs mb-4">[ CHARACTER SELECT ]</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        Hello, I'm <span class="text-[#ff006e]">Shiro Surell</span>
+                    </h2>
+                    <div class="space-y-4 text-gray-400 leading-relaxed">
+                        <p>
+                            I am an Information Technology graduate who is actively searching for employment that would allow me to acquire fresh skills, 
+                            broaden my knowledge, and make the most of what I have learned. I am eager to seize an opportunity where I can utilize my capabilities and make valuable contributions to the growth of an organization.
+                        </p>
+                       
+                    </div>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+    <span class="px-5 py-2 bg-[#00f5ff]/10 border border-[#00f5ff]/30 text-[#00f5ff] text-sm md:text-base rounded font-mono flex items-center gap-2">
+        🐱 CAT PERSON
+    </span>
+
+    <span class="px-5 py-2 bg-[#ff006e]/10 border border-[#ff006e]/30 text-[#ff006e] text-sm md:text-base rounded font-mono flex items-center gap-2">
+        🎮 GAMER
+    </span>
+
+    <span class="px-5 py-2 bg-[#ffd700]/10 border border-[#ffd700]/30 text-[#ffd700] text-sm md:text-base rounded font-mono flex items-center gap-2">
+        🌍 ADVENTUROUS
+    </span>
+
+    <span class="px-5 py-2 bg-[#bc13fe]/10 border border-[#bc13fe]/30 text-[#bc13fe] text-sm md:text-base rounded font-mono flex items-center gap-2">
+        🏀 BASKETBALL
+    </span>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 md:py-32 px-4 bg-[#0f0f14]/50">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-16">
+                <p class="text-[#ff006e] font-arcade text-xs mb-4">[ SKILL TREE ]</p>
+                <h2 class="text-3xl md:text-4xl font-bold">CHARACTER SKILLS</h2>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#00f5ff]">ENCODING</span>
+                        <span class="text-sm font-mono text-[#00f5ff]">95%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="95%"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#ff006e]">QUALITY RATING</span>
+                        <span class="text-sm font-mono text-[#ff006e]">90%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="90%" style="background: linear-gradient(90deg, #ff006e, #bc13fe); box-shadow: 0 0 10px #ff006e;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#ffd700]">INVENTORY MANAGEMENT</span>
+                        <span class="text-sm font-mono text-[#ffd700]">92%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="92%" style="background: linear-gradient(90deg, #ffd700, #ff006e); box-shadow: 0 0 10px #ffd700;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#bc13fe]">TECHNICAL PROFICIENCY</span>
+                        <span class="text-sm font-mono text-[#bc13fe]">95%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="95%" style="background: linear-gradient(90deg, #bc13fe, #00f5ff); box-shadow: 0 0 10px #bc13fe;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#00f5ff]">PROGRAMMING</span>
+                        <span class="text-sm font-mono text-[#00f5ff]">90%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#ef4c3b]">TROUBLESHOOTING</span>
+                        <span class="text-sm font-mono text-[#ef4c3b]">97%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="97%" style="background: linear-gradient(90deg, #F11D28, #FE612C); box-shadow: 0 0 10px #FFA500;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-[#0a0a0f] border border-[#00f5ff]/20 rounded hover:border-[#00f5ff]/50 transition-colors">
+                    <i data-lucide="terminal" class="w-8 h-8 mx-auto mb-2 text-[#00f5ff]"></i>
+                    <p class="text-xs font-mono">TYPING SKILLS</p>
+                </div>
+                <div class="text-center p-4 bg-[#0a0a0f] border border-[#ff006e]/20 rounded hover:border-[#ff006e]/50 transition-colors">
+                    <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-[#ff006e]"></i>
+                    <p class="text-xs font-mono">DATA ENTRY</p>
+                </div>
+                <div class="text-center p-4 bg-[#0a0a0f] border border-[#ffd700]/20 rounded hover:border-[#ffd700]/50 transition-colors">
+                    <i data-lucide="smartphone" class="w-8 h-8 mx-auto mb-2 text-[#ffd700]"></i>
+                    <p class="text-xs font-mono">MICROSOFT OFFICE SKILLS</p>
+                </div>
+                <div class="text-center p-4 bg-[#0a0a0f] border border-[#bc13fe]/20 rounded hover:border-[#bc13fe]/50 transition-colors">
+                    <i data-lucide="sparkles" class="w-8 h-8 mx-auto mb-2 text-[#bc13fe]"></i>
+                    <p class="text-xs font-mono">CANVA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+   <section id="projects" class="py-20 md:py-32 px-4">
+  <div class="container mx-auto max-w-6xl">
+    <div class="text-center mb-16">
+      <p class="text-[#ffd700] font-arcade text-xs mb-4">[ WORK EXPERIENCE ]</p>
+      <h2 class="text-3xl md:text-4xl font-bold uppercase">Completed Quests</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- QUEST 1 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/workspace/640x360/101"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+          <div class="absolute top-2 right-2 bg-[#00f5ff] text-[#0a0a0f] text-[10px] font-arcade px-2 py-1 rounded">
+            MAIN QUEST
+          </div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-[#00f5ff]">2024 – 2025</span>
+          <h3 class="font-arcade text-sm my-2 text-[#00f5ff]">Inventory Manager</h3>
+          <p class="text-xs text-[#ffd700] mb-3">QC Trading · San Juan, La Union</p>
+          <p class="text-gray-400 text-xs mb-4">
+            Managed stock levels, inventory tracking, and logistics flow for trading operations.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-[#00f5ff]/30 text-[#00f5ff] px-2 py-0.5 rounded">INVENTORY</span>
+            <span class="text-xs border border-[#00f5ff]/30 text-[#00f5ff] px-2 py-0.5 rounded">LOGISTICS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUEST 2 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/technology/640x360/202"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+          <div class="absolute top-2 right-2 bg-[#ff006e] text-[#0a0a0f] text-[10px] font-arcade px-2 py-1 rounded">
+            SIDE QUEST
+          </div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-[#ff006e]">APR – MAY 2023</span>
+          <h3 class="font-arcade text-sm my-2 text-[#ff006e]">Programmer (Intern)</h3>
+          <p class="text-xs text-[#00f5ff] mb-3">Department of Health – CHD I</p>
+
+          <ul class="text-gray-400 text-xs list-disc list-inside space-y-1 mb-4">
+            <li>Developed Automated ID Generator System</li>
+            <li>Built Document Request System</li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-[#ff006e]/30 text-[#ff006e] px-2 py-0.5 rounded">PHP</span>
+            <span class="text-xs border border-[#ff006e]/30 text-[#ff006e] px-2 py-0.5 rounded">SYSTEM DEV</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUEST 3 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/abstract/640x360/303"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-[#bc13fe]">JAN – APR 2023</span>
+          <h3 class="font-arcade text-sm my-2 text-[#bc13fe]">Programmer (Intern)</h3>
+          <p class="text-xs text-[#00f5ff] mb-3">Lorma Colleges</p>
+
+          <ul class="text-gray-400 text-xs list-disc list-inside space-y-1 mb-4">
+            <li>Created CCS Department Google Site</li>
+            <li>Troubleshot PC hardware</li>
+            <li>Developed Attendance Monitoring System</li>
+          </ul>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-[#bc13fe]/30 text-[#bc13fe] px-2 py-0.5 rounded">WEB</span>
+            <span class="text-xs border border-[#bc13fe]/30 text-[#bc13fe] px-2 py-0.5 rounded">IT SUPPORT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUEST 4 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/cityscape/640x360/404"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-gray-500">2024</span>
+          <h3 class="font-arcade text-sm my-2 text-white">Office Clerk</h3>
+          <p class="text-xs text-gray-400 mb-3">LGU · Balaoan, La Union</p>
+          <p class="text-gray-400 text-xs mb-4">
+            Provided administrative support, document handling, and data entry services.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-gray-500/30 text-gray-400 px-2 py-0.5 rounded">ADMIN</span>
+            <span class="text-xs border border-gray-500/30 text-gray-400 px-2 py-0.5 rounded">DATA ENTRY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUEST 5 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/minimal/640x360/505"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+          <div class="absolute top-2 right-2 bg-[#00f5ff] text-[#0a0a0f] text-[10px] font-arcade px-2 py-1 rounded">
+            CONTRACT QUEST
+          </div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-[#00f5ff]">2025</span>
+          <h3 class="font-arcade text-sm my-2 text-[#00f5ff]">Ads Quality Rater</h3>
+          <p class="text-xs text-[#ffd700] mb-3">WeLocalize</p>
+          <p class="text-gray-400 text-xs mb-4">
+            Evaluated online advertisements for accuracy, relevance, and compliance with client standards.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-[#00f5ff]/30 text-[#00f5ff] px-2 py-0.5 rounded">QA</span>
+            <span class="text-xs border border-[#00f5ff]/30 text-[#00f5ff] px-2 py-0.5 rounded">ADS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUEST 6 -->
+      <div class="project-card bg-[#0f0f14] rounded-lg overflow-hidden group">
+        <div class="relative h-40 overflow-hidden">
+          <img src="https://static.photos/gaming/640x360/606"
+               class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] to-transparent"></div>
+          <div class="absolute top-2 right-2 bg-[#bc13fe] text-[#0a0a0f] text-[10px] font-arcade px-2 py-1 rounded">
+            SIDE QUEST
+          </div>
+        </div>
+
+        <div class="p-6">
+          <span class="text-[10px] font-arcade text-[#bc13fe]">2025 – Present</span>
+          <h3 class="font-arcade text-sm my-2 text-[#bc13fe]">Game Tester</h3>
+          <p class="text-xs text-[#00f5ff] mb-3">GameTester.gg</p>
+          <p class="text-gray-400 text-xs mb-4">
+            Participates in beta testing, QA, and reporting bugs for indie and major game titles.
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs border border-[#bc13fe]/30 text-[#bc13fe] px-2 py-0.5 rounded">GAME QA</span>
+            <span class="text-xs border border-[#bc13fe]/30 text-[#bc13fe] px-2 py-0.5 rounded">BETA TEST</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 px-4 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#ff006e]/5 to-[#00f5ff]/5"></div>
+    <div class="container mx-auto max-w-2xl relative z-10">
+        <div class="text-center mb-12">
+    <p class="text-[#bc13fe] font-arcade text-xl mb-6">[ GAME OVER? ]</p>
+    <h2 class="text-5xl md:text-6xl font-bold mb-6">Continue?</h2>
+</div>
+
+
+        
+
+            <div class="text-center">
+                <button id="submit-btn" class="pixel-btn px-12 py-4 font-arcade text-sm inline-flex items-center gap-2"
+                onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=sharpz1130@gmail.com&su=Job+Offer+to+Sharbyne+Rowbyxe+Surell','_blank')" > <i data-lucide="send" class="w-4 h-4"></i> SEND ME A MESSAGE </button>
+                
+            </div>
+            <div id="result" class="text-center text-sm font-arcade mt-4"></div>
+       
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-white/10 text-center">
+        <p class="font-arcade text-xs text-gray-500">
+            © 2026 PLAYER 1 | HIGH SCORE: 999999
+        </p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Typewriter Effect
+        const typewriterElement = document.getElementById('typewriter');
+        const text = "WELCOME TO MY PORTFOLIO";
+        let index = 0;
+        
+        function typeWriter() {
+            if (index < text.length) {
+                typewriterElement.textContent += text.charAt(index);
+                typewriterElement.setAttribute('data-text', typewriterElement.textContent);
+                index++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const animateCounter = (counter) => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const increment = target / 50;
+            let current = 0;
+            
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = Math.ceil(current);
+                    setTimeout(updateCount, 30);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            
+            updateCount();
+        };
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Animate skill bars
+                    if (entry.target.classList.contains('skill-fill')) {
+                        const width = entry.target.getAttribute('data-width');
+                        entry.target.style.width = width;
+                    }
+                    
+                    // Animate counters
+                    if (entry.target.classList.contains('counter')) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.skill-fill').forEach(el => observer.observe(el));
+        document.querySelectorAll('.counter').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('contact-form');
+    const result = document.getElementById('result');
+    const submitBtn = document.getElementById('submit-btn');
+    const originalBtnText = submitBtn.innerHTML;
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Change button to loading state
+        submitBtn.innerHTML = "SAVING GAME...";
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+                // SUCCESS
+                alert('Message sent! Game saved successfully! 🎮');
+                result.innerHTML = '<span class="text-green-500">Message Sent Successfully!</span>';
+                form.reset();
+            } else {
+                // ERROR
+                console.log(response);
+                result.innerHTML = '<span class="text-red-500">Game Over: Something went wrong.</span>';
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            result.innerHTML = '<span class="text-red-500">Connection Error!</span>';
+        })
+        .finally(() => {
+            // Reset button
+            submitBtn.innerHTML = originalBtnText;
+            submitBtn.disabled = false;
+            
+            // Clear status message after 3 seconds
+            setTimeout(() => {
+                result.style.display = "none"; 
+            }, 3000);
+        });
+    });
+
+        // Add parallax effect to floating elements
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 0.5;
+            const mouseY = e.clientY / window.innerHeight - 0.5;
+            
+            document.querySelectorAll('.float').forEach(el => {
+                const speed = 20;
+                el.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
