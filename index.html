@@ -232,7 +232,7 @@
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <a href="#hero" class="font-arcade text-sm md:text-base text-[#00f5ff] hover:text-[#ff006e] transition-colors">
-                    <i data-lucide="gamepad-2" class="inline w-5 h-5 mr-2"></i>PLAYER 1
+                    <i data-lucide="gamepad-2" class="inline w-5 h-5 mr-2"></i>SHIRO
                 </a>
                 
                 <div class="hidden md:flex space-x-8">
@@ -307,9 +307,12 @@
 
         </div>
         
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="w-6 h-6 text-[#00f5ff]"></i>
-        </div>
+        <div
+  id="scroll-down-btn"
+  class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
+>
+  <i data-lucide="chevron-down" class="w-6 h-6 text-[#00f5ff]"></i>
+</div>
     </section>
 
     <!-- About Section -->
@@ -329,7 +332,7 @@
                 <div>
                     <p class="text-[#00f5ff] font-arcade text-xs mb-4">[ CHARACTER SELECT ]</p>
                     <h2 class="text-3xl md:text-4xl font-bold mb-6">
-                        Hello, I'm <span class="text-[#ff006e]">Sharbyne Rowbyxe Surell</span>
+                        Hello, I'm <span class="text-[#ff006e]">Shiro Surell</span>
                     </h2>
                     <div class="space-y-4 text-gray-400 leading-relaxed">
                         <p>
@@ -423,33 +426,56 @@
 
                 <div class="skill-item">
                     <div class="flex justify-between mb-2">
-                        <span class="text-sm font-mono text-[#ef4c3b]">TROUBLESHOOTING</span>
-                        <span class="text-sm font-mono text-[#ef4c3b]">97%</span>
+                        <span class="text-sm font-mono text-[#fbc2eb]">TROUBLESHOOTING</span>
+                        <span class="text-sm font-mono text-[#fbc2eb]">97%</span>
                     </div>
                     <div class="skill-bar h-3 rounded-sm overflow-hidden">
-                        <div class="skill-fill h-full w-0 rounded-sm" data-width="97%" style="background: linear-gradient(90deg, #F11D28, #FE612C); box-shadow: 0 0 10px #FFA500;"></div>
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="97%" style="background: linear-gradient(90deg, #fbc2eb, #fcb69f); box-shadow: 0 0 10px #FFA500;"></div>
+                    </div>
+                </div>
+                
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#00f260]">TYPING SKILLS</span>
+                        <span class="text-sm font-mono text-[#00f260]">95%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="95%" style="background: linear-gradient(90deg, #00f260, #0575e6); box-shadow: 0 0 10px #FFA500;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#ff512f]">DATA ENTRY</span>
+                        <span class="text-sm font-mono text-[#ff512f]">97%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="97%" style="background: linear-gradient(90deg, #ff512f, #dd2476); box-shadow: 0 0 10px #FFA500;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#fffbd5]">MICROSOFT OFFICE SKILLS</span>
+                        <span class="text-sm font-mono text-[#fffbd5]">90%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="90%" style="background: linear-gradient(90deg, #fffbd5, #fceabb); box-shadow: 0 0 10px #FFA500;"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-sm font-mono text-[#7f00ff]">CANVA</span>
+                        <span class="text-sm font-mono text-[#7f00ff]">87%</span>
+                    </div>
+                    <div class="skill-bar h-3 rounded-sm overflow-hidden">
+                        <div class="skill-fill h-full w-0 rounded-sm" data-width="87%" style="background: linear-gradient(90deg, #7f00ff, #e100ff); box-shadow: 0 0 10px #FFA500;"></div>
                     </div>
                 </div>
             </div>
+        
             
-            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="text-center p-4 bg-[#0a0a0f] border border-[#00f5ff]/20 rounded hover:border-[#00f5ff]/50 transition-colors">
-                    <i data-lucide="terminal" class="w-8 h-8 mx-auto mb-2 text-[#00f5ff]"></i>
-                    <p class="text-xs font-mono">TYPING SKILLS</p>
-                </div>
-                <div class="text-center p-4 bg-[#0a0a0f] border border-[#ff006e]/20 rounded hover:border-[#ff006e]/50 transition-colors">
-                    <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-[#ff006e]"></i>
-                    <p class="text-xs font-mono">DATA ENTRY</p>
-                </div>
-                <div class="text-center p-4 bg-[#0a0a0f] border border-[#ffd700]/20 rounded hover:border-[#ffd700]/50 transition-colors">
-                    <i data-lucide="smartphone" class="w-8 h-8 mx-auto mb-2 text-[#ffd700]"></i>
-                    <p class="text-xs font-mono">MICROSOFT OFFICE SKILLS</p>
-                </div>
-                <div class="text-center p-4 bg-[#0a0a0f] border border-[#bc13fe]/20 rounded hover:border-[#bc13fe]/50 transition-colors">
-                    <i data-lucide="sparkles" class="w-8 h-8 mx-auto mb-2 text-[#bc13fe]"></i>
-                    <p class="text-xs font-mono">CANVA</p>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -477,7 +503,7 @@
         <div class="p-6">
           <span class="text-[10px] font-arcade text-[#00f5ff]">2024 – 2025</span>
           <h3 class="font-arcade text-sm my-2 text-[#00f5ff]">Inventory Manager</h3>
-          <p class="text-xs text-[#ffd700] mb-3">IQC Trading · San Juan, La Union</p>
+          <p class="text-xs text-[#ffd700] mb-3">QC Trading · San Juan, La Union</p>
           <p class="text-gray-400 text-xs mb-4">
             Managed stock levels, inventory tracking, and logistics flow for trading operations.
           </p>
@@ -623,19 +649,244 @@
 </section>
 
 
+<!-- Project Showcase Section -->
+<!-- ================= PDF MODAL ================= -->
+<div id="pdfModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+  <div class="relative w-[90%] md:w-[70%] h-[80%] bg-[#0f0f14] border border-[#00f5ff]/40 neon-border rounded-lg overflow-hidden">
+
+    <div class="flex justify-between items-center px-4 py-3 border-b border-[#00f5ff]/30">
+      <span id="pdfTitle" class="font-arcade text-xs text-[#00f5ff]">PROJECT FILE</span>
+      <button onclick="closePDF()" class="font-arcade text-xs text-[#ff006e]">✕ CLOSE</button>
+    </div>
+
+    <iframe id="pdfFrame" class="w-full h-full bg-black"></iframe>
+  </div>
+</div>
+<!-- ============================================ -->
+
+<!-- ================= PROJECT SHOWCASE ================= -->
+<section id="project-showcase" class="py-20 px-4 bg-[#0f0f14]/60">
+<div class="container mx-auto max-w-6xl">
+
+<div class="text-center mb-16">
+  <p class="text-[#00f5ff] font-arcade text-xs mb-4">[ PROJECT SELECT ]</p>
+  <h2 class="text-3xl md:text-4xl font-bold uppercase">My Creations</h2>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<!-- PROJECT 1 -->
+<div class="bg-[#0a0a0f] p-6 rounded-lg neon-border">
+  <h3 class="font-arcade text-sm text-[#00f5ff] mb-3">Attendance Monitoring System</h3>
+  <p class="text-gray-400 text-xs mb-4">
+    Attendance tracking system developed for Lorma Colleges.
+  </p>
+  <button onclick="openPDF('LORMA.pdf','Attendance Monitoring System')"
+    class="pixel-btn px-4 py-2 text-xs font-arcade">
+    VIEW PDF
+  </button>
+</div>
+
+<!-- PROJECT 2 -->
+<div class="bg-[#0a0a0f] p-6 rounded-lg neon-border-pink">
+  <h3 class="font-arcade text-sm text-[#ff006e] mb-3">Document Request System</h3>
+  <p class="text-gray-400 text-xs mb-4">
+    Online document request & approval system for DOH.
+  </p>
+  <button onclick="openPDF('DOH.pdf','Document Request System')"
+    class="pixel-btn pixel-btn-pink px-4 py-2 text-xs font-arcade">
+    VIEW PDF
+  </button>
+</div>
+
+</div>
+</div>
+<div class="mt-16">
+
+  <div class="text-center mb-10">
+    <p class="text-[#ffd700] font-arcade text-xs mb-4">[ DESIGN QUEST ]</p>
+    <h3 class="text-2xl md:text-3xl font-bold uppercase">Canva Projects</h3>
+    <p class="text-gray-400 text-sm mt-3">
+      Posters, programs, and creative layouts designed using Canva.
+    </p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- COOKFEST -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg border border-[#ffd700]/30 hover:border-[#ffd700] transition">
+      <h4 class="font-arcade text-xs text-[#ffd700] mb-3">Cookfest</h4>
+      <button
+        onclick="openPDF('COOKFEST.pdf','Cookfest – Canva Project')"
+        class="pixel-btn pixel-btn-yellow px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+    <!-- POSTER MAKING -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg neon-border">
+      <h4 class="font-arcade text-xs text-[#00f5ff] mb-3">Poster Making</h4>
+      <button
+        onclick="openPDF('POSTER MAKING.pdf','Poster Making – Canva Project')"
+        class="pixel-btn px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+    <!-- SPOKEN POETRY -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg neon-border-pink">
+      <h4 class="font-arcade text-xs text-[#ff006e] mb-3">Spoken Poetry</h4>
+      <button
+        onclick="openPDF('SPOKEN POETRY.pdf','Spoken Poetry – Canva Project')"
+        class="pixel-btn pixel-btn-pink px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+    <!-- ARAW NG KALAYAAN -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg border border-[#bc13fe]/30 hover:border-[#bc13fe] transition">
+      <h4 class="font-arcade text-xs text-[#bc13fe] mb-3">Araw ng Kalayaan</h4>
+      <button
+        onclick="openPDF('ARAW NG KALAYAAN.pdf','Araw ng Kalayaan – Canva Project')"
+        class="pixel-btn px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+    <!-- DAYCARE PROGRAM -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg neon-border">
+      <h4 class="font-arcade text-xs text-[#00f5ff] mb-3">Daycare Program</h4>
+      <button
+        onclick="openPDF('DAYCARE PROGRAM.pdf','Daycare Program – Canva Project')"
+        class="pixel-btn px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+    <!-- DAYCARE DIPLOMA -->
+    <div class="bg-[#0a0a0f] p-6 rounded-lg neon-border-pink">
+      <h4 class="font-arcade text-xs text-[#ff006e] mb-3">Daycare Diploma</h4>
+      <button
+        onclick="openPDF('DAYCARE DIPLOMA.pdf','Daycare Diploma – Canva Project')"
+        class="pixel-btn pixel-btn-pink px-4 py-2 text-xs font-arcade"
+      >
+        VIEW PROJECT
+      </button>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="certificates" class="py-20 md:py-32 px-4 bg-[#0a0a0f]">
+  <div class="container mx-auto max-w-6xl">
+
+    <div class="text-center mb-16">
+      <p class="text-[#bc13fe] font-arcade text-xs mb-4">[ ACHIEVEMENTS ]</p>
+      <h2 class="text-3xl md:text-4xl font-bold uppercase">Certificates Earned</h2>
+      <p class="text-gray-400 text-sm mt-4">
+        Trainings and certifications completed throughout my IT journey.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- CERT 1 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg neon-border">
+        <h3 class="font-arcade text-xs text-[#00f5ff] mb-3">
+          Installing and Configuring Computer Systems
+        </h3>
+        <button
+          onclick="openPDF('Installing and Configuring Computer Systems.pdf','Installing and Configuring Computer Systems')"
+          class="pixel-btn px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+      <!-- CERT 2 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg neon-border-pink">
+        <h3 class="font-arcade text-xs text-[#ff006e] mb-3">
+          Introduction to Bookkeeping
+        </h3>
+        <button
+          onclick="openPDF('Introduction to Bookkeeping.pdf','Introduction to Bookkeeping')"
+          class="pixel-btn pixel-btn-pink px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+      <!-- CERT 3 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg border border-[#ffd700]/30 hover:border-[#ffd700]">
+        <h3 class="font-arcade text-xs text-[#ffd700] mb-3">
+          Introduction to CSS
+        </h3>
+        <button
+          onclick="openPDF('Introduction to CSS.pdf','Introduction to CSS')"
+          class="pixel-btn pixel-btn-yellow px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+      <!-- CERT 4 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg neon-border">
+        <h3 class="font-arcade text-xs text-[#00f5ff] mb-3">
+          Maintaining Computer Systems and Networks
+        </h3>
+        <button
+          onclick="openPDF('Maintaining Computer Systems and Networks.pdf','Maintaining Computer Systems and Networks')"
+          class="pixel-btn px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+      <!-- CERT 5 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg neon-border-pink">
+        <h3 class="font-arcade text-xs text-[#ff006e] mb-3">
+          Setting Up Computer Networks
+        </h3>
+        <button
+          onclick="openPDF('Setting Up Computer Networks.pdf','Setting Up Computer Networks')"
+          class="pixel-btn pixel-btn-pink px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+      <!-- CERT 6 -->
+      <div class="project-card bg-[#0f0f14] p-6 rounded-lg border border-[#bc13fe]/30 hover:border-[#bc13fe]">
+        <h3 class="font-arcade text-xs text-[#bc13fe] mb-3">
+          Setting Up Computer Servers
+        </h3>
+        <button
+          onclick="openPDF('Setting Up Computer Servers.pdf','Setting Up Computer Servers')"
+          class="pixel-btn px-4 py-2 text-xs font-arcade"
+        >
+          VIEW CERTIFICATE
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 md:py-32 px-4 relative overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#ff006e]/5 to-[#00f5ff]/5"></div>
     <div class="container mx-auto max-w-2xl relative z-10">
         <div class="text-center mb-12">
-    <p class="text-[#bc13fe] font-arcade text-xl mb-6">[ GAME OVER? ]</p>
+
     <h2 class="text-5xl md:text-6xl font-bold mb-6">Continue?</h2>
 </div>
-
-
-        
-
             <div class="text-center">
                 <button id="submit-btn" class="pixel-btn px-12 py-4 font-arcade text-sm inline-flex items-center gap-2"
                 onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=sharpz1130@gmail.com&su=Job+Offer+to+Sharbyne+Rowbyxe+Surell','_blank')" > <i data-lucide="send" class="w-4 h-4"></i> SEND ME A MESSAGE </button>
@@ -654,6 +905,12 @@
     </footer>
 
     <script>
+      document.getElementById('scroll-down-btn').addEventListener('click', () => {
+  window.scrollBy({
+    top: window.innerHeight * 0.6, // scrolls ~60% of screen height
+    behavior: 'smooth'
+  });
+});
         // Initialize Lucide Icons
         lucide.createIcons();
 
@@ -814,6 +1071,23 @@
                 el.style.transform = `translate(${mouseX * speed}px, ${mouseY * speed}px)`;
             });
         });
+
+        lucide.createIcons();
+
+function openPDF(file,title){
+  document.getElementById("pdfFrame").src = file;
+  document.getElementById("pdfTitle").textContent = title;
+  document.getElementById("pdfModal").classList.remove("hidden");
+  document.getElementById("pdfModal").classList.add("flex");
+}
+
+function closePDF(){
+  document.getElementById("pdfFrame").src="";
+  document.getElementById("pdfModal").classList.add("hidden");
+  document.getElementById("pdfModal").classList.remove("flex");
+}
+
+        
     </script>
 </body>
 </html>
